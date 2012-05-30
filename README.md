@@ -54,4 +54,10 @@ mydaemon = MyDaemon.new
 mydaemon.start
 ```
 
-Launch your code without arguments to see the available options
+Launch your code without arguments to see the available options :
+
+    Usage: mydaemon [options] (start | stop | restart | status)
+        -f                               Run in foreground
+        -d                               Run in background, default
+        -p pid                           Path to the pid file, default : '/tmp/mydaemon.pid'
+        -h, --help                       Show this message
