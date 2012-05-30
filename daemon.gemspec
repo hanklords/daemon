@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-require_relative "lib/daemon"
+require File.expand_path("../lib/daemon", __FILE__)
 
 Gem::Specification.new do |s|
   s.summary = "Daemon module"
