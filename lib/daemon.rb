@@ -11,6 +11,7 @@ module Daemon
     Process.daemon
     @daemon_pid = $$
     open(@daemon_pid_file, "w") {|f| f.write(@daemon_pid)}
+    $0 = @daemon_name
     at_exit {daemon_stop}
     self
   end
@@ -34,6 +35,7 @@ module Daemon
   
   def daemon_running?; !daemon_pid.nil? end
   
+  attr_writer :daemon_name
   attr_reader :daemon_pid_file
   def daemon_pid_file=(pid_file)
     @daemon_pid_file = File.expand_path(pid_file) || "/dev/null"
@@ -85,7 +87,7 @@ module Daemon
   
   private
   def daemon_init
-    daemon_name ||= self.class.name[/\w+$/].downcase
+    @daemon_name ||= self.class.name[/\w+$/].downcase
     @daemon_pid_file ||= "/tmp/#{daemon_name}.pid"
   end
 end
