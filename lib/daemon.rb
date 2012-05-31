@@ -1,7 +1,7 @@
 require 'optparse'
 
 module Daemon
-  VERSION="0.1"
+  VERSION="0.2"
   attr_writer :daemon_disable
   
   def daemon_start
