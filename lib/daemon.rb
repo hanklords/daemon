@@ -7,12 +7,11 @@ module Daemon
   def daemon_start
     return if @daemon_disable || daemon_running?
     daemon_init
+    open(@daemon_pid_file, "w") {|f| f.write("")}
     Process.daemon
     @daemon_pid = $$
     open(@daemon_pid_file, "w") {|f| f.write(@daemon_pid)}
     at_exit {daemon_stop}
-  rescue StandardError, SystemCallError
-  ensure
     self
   end
   
