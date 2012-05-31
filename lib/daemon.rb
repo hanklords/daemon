@@ -20,6 +20,7 @@ module Daemon
     daemon_init
     Process.kill "TERM", daemon_pid
     File.delete(@daemon_pid_file) if @daemon_pid_file != "/dev/null"
+    @daemon_pid = nil
   rescue StandardError, SystemCallError
   ensure
     self
