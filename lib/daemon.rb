@@ -87,6 +87,6 @@ module Daemon
   private
   def daemon_init
     daemon_name ||= self.class.name[/\w+$/].downcase
-    @daemon_pid_file ||= "/var/run/#{daemon_name}.pid"
+    @daemon_pid_file ||= "/tmp/#{daemon_name}.pid"
   end
 end
